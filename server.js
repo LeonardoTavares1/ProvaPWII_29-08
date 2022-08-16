@@ -1,5 +1,6 @@
 import express from "express";
 import cors from "cors";
+import { teste_conexao } from './test_bd.js'
 import { routes } from "./routes.js";
 const port = process.env.PORT = 4000;
 const app = express();
@@ -13,6 +14,11 @@ app.use(express.urlencoded({
 
 app.use(routes);
 
-app.listen(port, () => {
-    console.log(`Server runnig on ${ port }`);
-})
+    teste_conexao().then((res) => {
+        if(res == true)
+        {
+            app.listen(port, () => {
+                console.log(`Server runnig on ${ port }`);
+            })            
+        }
+    })
