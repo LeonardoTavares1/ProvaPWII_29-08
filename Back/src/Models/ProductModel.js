@@ -1,19 +1,14 @@
 export class Product{
-    constructor(name, price, qtd){
-        this.name = name;
-        this.price = price;
-        this.qtd = qtd;
+    constructor(preco, descricao){
+        this.preco= preco;
+        this.descricao = descricao;
     }
 
-    getName(){
-        return this.name;
+    getPreco(){
+        return this.preco;
     }
 
-    getPrice(){
-        return this.price;
-    }
-
-    getQtd(){
-        return this.qtd;
+    getDescricao(){
+        return this.descricao;
     }
 }

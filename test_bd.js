@@ -10,6 +10,7 @@ export async function teste_conexao(){
 
     const pool = await sql.connect(sqlConfig);
 
+   try {
     if (pool._connected == true)
     {
         console.log('Conexao estabelecida!');
@@ -21,6 +22,12 @@ export async function teste_conexao(){
         pool.close();
         return false;
     }
+       
+   } catch (error) {
+       pool.close();
+       console.log('error teste_bd.js ' + error)
+       return false;
+   }
 
 }
 

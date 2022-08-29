@@ -1,33 +1,25 @@
-let ClientesTable = [
-    {
-        nome : 'Bruno',
-        idade: '23'
-    },
-    {
-        nome : 'Eduardo',
-        idade: '33'
-    },
-    {
-        nome : 'Luiz Henrique',
-        idade: '29'
-    }
-]
+import { CreatePoolSqlServer } from "../../pool.js";
+const conexao = await CreatePoolSqlServer();
 
-export class Client{
-    constructor(nome, idade, cpf){
-        this._nome = nome,
-        this._idade = idade,
-        this._cpf = cpf
+export class Produtos{
+    constructor(preco, descricao){
+        this._preco = preco,
+        this._descricao = descricao
     }
 
-    SelectAll(){
-        return ClientesTable;
+    static async SelectAll(){
+      try {
+        const { recordset } = await conexao.query('select * from Produtos')
+        return recordset
+      } catch (error) {
+
+      }
     }
 
     Insert(){
-        ClientesTable.push({
-            nome : this._nome,
-            idade : this._idade
+        ProdutosTable.push({
+            preco: this._preco,
+            descricao : this._descricao
         })
     }
 }
